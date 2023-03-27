@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../partials/header.ejs") %>
+    <title>Home</title>
+  </head>
+  <body>
+    <div>
+      <!-- <h1><a href="/">Url Shortner</a></h1> -->
+      <%- include('../partials/nav.ejs') %>
+      <form action="/url" class="input-group py-2 px-3 align-items-center container gap-3" method="post">
+        <label for="urlInput" class="form-label">Enter Your URL</label>
+        <input
+          class="form-control" 
+          type="text"
+          id="urlInput"
+          name="url"
+          placeholder="URL"
+          required
+        />
+        <button type="submit" class="btn btn-primary">Generate</button>
+      </form>
+    </div>
+        <% if (locals.allUrls) { %>     
+          <table class="container table table-hover table-bordered">
+            <thead>
+              <tr>
+                <th scope="row">SR No</th>
+                <th scope="row">Original Url</th>
+                <th scope="row">Short Url</th>
+              </tr>
+            </thead>
+            <tbody>
+          <% allUrls.reverse().forEach((url, index) => { %>
+            <tr class="urlHistory">
+              <th scope="row"> <%= index+1 %> </th>
+              <td>
+                <a
+                class="text-success text-decoration-none"
+                href="<%= url.redirectUrl %>"
+                target="_blank"
+              > 
+              <%= url.redirectUrl %>
+            </a>
+          </td>
+          <td>
+            <a
+              href="http://localhost:8001/url/<%= url.shortID %>"
+              target="_blank"
+              >
+              http://localhost:8001/url/<%= url.shortID %>
+            </a>
+          </td>
+        </tr>
+        <% }) %>
+        <% } else { %>
+            <h1>
+              Generate short Urls
+            </h1>
+          <% } %>
+         
+      </tbody>
+    </div>
+  </body>
+</html>
