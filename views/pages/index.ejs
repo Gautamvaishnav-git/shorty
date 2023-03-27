@@ -22,7 +22,7 @@
       </form>
     </div>
         <% if (locals.allUrls) { %>     
-          <table class="container table table-hover table-bordered">
+          <table class="container table table-bordered">
             <thead>
               <tr>
                 <th scope="row">SR No</th>
@@ -41,15 +41,18 @@
                 target="_blank"
               > 
               <%= url.redirectUrl %>
+              <br>
             </a>
+            <i class="bi bi-clipboard-check px-3 fs-4" title="copy" role="button" onclick="copyToClipboard(this)"></i>
           </td>
-          <td>
+          <td class="d-flex gap-4">
             <a
               href="http://localhost:8001/url/<%= url.shortID %>"
               target="_blank"
               >
               http://localhost:8001/url/<%= url.shortID %>
             </a>
+            <i class="bi bi-clipboard-check" title="copy" role="button" onclick="copyToClipboard(this)" ></i>
           </td>
         </tr>
         <% }) %>
@@ -61,5 +64,19 @@
          
       </tbody>
     </div>
+
+    <script>
+      const copyToClipboard = (e) => {
+        navigator.clipboard.writeText(e.previousElementSibling.href)
+        let copiedEle = document.createElement("p") 
+        copiedEle.innerText = "Copied"
+        copiedEle.classList.add("bg-success" ,"text-white" ,"px-2" ,"py-1", "d-inline", "rounded", "fs-6")
+        e.append(copiedEle)
+        setTimeout(() => {
+          copiedEle.remove()
+        }, 1000);
+      }
+    </script>
+
   </body>
 </html>
