@@ -1,7 +1,7 @@
 
 # Shorty
 
-URL Shortner is short url services. Here You can generate short urls for long urls. You can login to your dashboard or can see the list of the short urls that you generate. 
+Shorty is short url services. Here You can generate short urls for long urls. You can login to your dashboard or can see the list of the short urls that you generate. 
 
 ## Features
 
